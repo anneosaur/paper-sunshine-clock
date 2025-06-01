@@ -22,18 +22,18 @@ module BaseStandoffs() {
   difference() {
     translate([0, 0, bottom])
       linear_extrude(bottom_standoff_height)
-        ScrewHoles(standoff_diam);
+        ScrewHoles(standoff_diam, middle_offset = -7);
 
     BottomScrewHoles();
   }
 }
 
 module BottomScrewHoles() {
-  linear_extrude(10)
-    ScrewHoles(screw_outer_diam);
+  linear_extrude(25)
+    ScrewHoles(screw_outer_diam, middle_offset=100);
 
   linear_extrude(screw_head_height)
-    ScrewHoles(screw_head_diam);
+    ScrewHoles(screw_head_diam, middle_offset=100);
 }
 
 module Body() {
@@ -50,8 +50,8 @@ module CableCutOut() {
   coutout_height = 5;
   coutout_width = 12;
 
-  translate([-coutout_width / 2,  2, bottom])
-    cube([coutout_width, thickness, coutout_height]);
+  translate([-coutout_width / 2, -thickness, bottom])
+    cube([coutout_width, thickness*2, coutout_height]);
 }
 
 module FrontCutout() {
@@ -120,12 +120,6 @@ module Enclosure() {
         Base();
       }
       CableCutOut();
-
-      translate([0, -main_radius, 0])
-      union() {
-        ScrewInserts(standoff_hole_diam, margin + 4, total_height -margin - 4);
-        ScrewInserts(screw_head_diam, screw_head_height, total_height - 1);
-      }
 
       translate([0, -main_radius, 0])      
       union() {

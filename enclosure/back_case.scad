@@ -3,13 +3,13 @@ include <common.scad>
 
 $fn = 300;
 
-button_diam = 4.3;
+button_diam = 4.2;
 button_x = 20.5 / 2;
 button_y = pcb_radius - 6.5;
 button_thickness = 1;
 
 light_pipe_outer_diam = 4;
-light_pipe_inner_diam = 2.2;
+light_pipe_inner_diam = 2.1;
 light_pipe_coord_x = 19.8;
 light_pipe_coord_y = 27.88 + 10.4;
 led_height = 1;
@@ -54,7 +54,7 @@ module UpperSandoffs() {
 
   translate([0, 0, inner_height - top_standoff_height])
     linear_extrude(screw_insert_height)
-      ScrewHoles(standoff_hole_diam);
+      ScrewHoles(standoff_hole_diam, 100); // don't need screw insert hole in middle standoff
   }
 }
 
@@ -92,8 +92,9 @@ module BackCover() {
 
 module CableCutout() {
   length = 12;
-  translate([-length / 2, 9, 5])
-    cube([length, 5, 2]);
+  height = 2;
+  translate([-length / 2, 5, inner_height - top_standoff_height])
+    cube([length, 10, height]);
 }
 
 module ButtonCutout() {
@@ -126,11 +127,12 @@ module UsbCutout() {
 }
 
 module TempSensorCutout() {
-  translate([adjacent(49, 45), opposite(49, 45), 5.5])
+  translate([adjacent(49, 45), opposite(49, 45), inner_height - top_standoff_height + pcb_thickness])
   rotate([-49, 90, 0])
-  linear_extrude(10)
+  linear_extrude(5)
   rounded_square([2, 5], corner_r=0.5, center=true);
 }
+
 
 //Pcb();
 BackCover();
