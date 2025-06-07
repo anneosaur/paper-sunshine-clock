@@ -33,16 +33,16 @@ wall_thickness = 2.15;
 pcb_button_height = 4.3;
 button_base_height = 0.6;
 space_above_pcb = pcb_button_height + button_base_height + 0.5;
-bottom_standoff_height = 15.8;
+bottom_standoff_height = 12.5;
 top_standoff_height = space_above_pcb;
 inner_height = bottom_standoff_height + pcb_thickness + top_standoff_height;
 outer_height = inner_height + wall_thickness ;
 
-screw_outer_diam = 2.7;
+screw_outer_diam = 3;
 screw_head_diam = 5.25;
 screw_head_height = 1.5;
 
-standoff_hole_diam = 3.2;
+standoff_hole_diam = 3.5;
 standoff_diam = 6.75;
 screw_insert_height = 4;
 
