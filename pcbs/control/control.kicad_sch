@@ -4924,6 +4924,16 @@
 	)
 	(wire
 		(pts
+			(xy 127 153.67) (xy 133.35 153.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "36cf6a6c-aa7a-40ec-9a78-b3308ab7fab8")
+	)
+	(wire
+		(pts
 			(xy 41.91 158.75) (xy 46.99 158.75)
 		)
 		(stroke
@@ -4971,16 +4981,6 @@
 			(type default)
 		)
 		(uuid "5341d39f-ab65-4cd6-abeb-2962d6ba5d43")
-	)
-	(wire
-		(pts
-			(xy 127 156.21) (xy 133.35 156.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "54bc099b-e91f-4c86-abfd-c0891aebae66")
 	)
 	(wire
 		(pts
@@ -5897,17 +5897,6 @@
 		)
 		(uuid "2536d25c-b99a-40b4-a42c-633ec259939f")
 	)
-	(label "RTC_BAT"
-		(at 133.35 156.21 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify right bottom)
-		)
-		(uuid "2990cb77-5a51-4534-b0c4-b4f76a065aa5")
-	)
 	(label "ADC3"
 		(at 143.51 66.04 180)
 		(fields_autoplaced yes)
@@ -6127,6 +6116,17 @@
 			(justify left bottom)
 		)
 		(uuid "53a952bf-3ae6-4c96-a70e-d595cd5243ee")
+	)
+	(label "RTC_BAT"
+		(at 133.35 153.67 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right bottom)
+		)
+		(uuid "56cf9d04-bd39-4837-b124-f8e09a3e6d72")
 	)
 	(label "5v"
 		(at 82.55 109.22 270)
@@ -9086,73 +9086,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GNDD")
-		(at 127 153.67 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "47050b05-db5d-4bf9-835b-080bd853ba0b")
-		(property "Reference" "#PWR026"
-			(at 133.35 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GNDD"
-			(at 130.81 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 127 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 127 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
-			(at 127 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "1e19fac5-3dc0-4577-bd6c-468c09d81164")
-		)
-		(instances
-			(project "control"
-				(path "/6120ad7c-5b3a-4aa8-9b13-74a3f0996cb1"
-					(reference "#PWR026")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 82.55 114.3 180)
 		(unit 1)
@@ -10344,6 +10277,73 @@
 			(project "control"
 				(path "/6120ad7c-5b3a-4aa8-9b13-74a3f0996cb1"
 					(reference "R5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDD")
+		(at 127 156.21 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "70e752c0-f5df-4a7f-8252-e8c50f908033")
+		(property "Reference" "#PWR026"
+			(at 133.35 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GNDD"
+			(at 130.81 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 127 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 127 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
+			(at 127 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a10c1c26-91c1-4651-a840-db33dfc6b7dc")
+		)
+		(instances
+			(project "control"
+				(path "/6120ad7c-5b3a-4aa8-9b13-74a3f0996cb1"
+					(reference "#PWR026")
 					(unit 1)
 				)
 			)

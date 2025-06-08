@@ -506,7 +506,7 @@
       "plot": "/Users/anne/Documents/Projects/thermochromic-clock/pcbs/control/control-v1",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "../../../../../Desktop/pcb.step",
+      "step": "../../../../../../Desktop/pcb.step",
       "svg": "../../../../../Desktop/",
       "vrml": "../../../../../Desktop/pcb.wrl"
     },
