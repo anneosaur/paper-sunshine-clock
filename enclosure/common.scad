@@ -26,38 +26,38 @@ total_height = bottom + paper_h + margin/2;
 
 resistor_thickness = 2;
 
-// back cover
-wall_thickness = 2.15;
-outer_height = 12.5;
-inner_height = outer_height - wall_thickness;
+bottom_standoff_height = 4;
 
-screw_outer_diam = 2.7;
+// back cover
+pcb_thickness = 0.8;
+
+wall_thickness = 2.15;
+pcb_button_height = 4.3;
+button_base_height = 0.6;
+space_above_pcb = pcb_button_height + button_base_height + 0.5;
+top_standoff_height = space_above_pcb;
+inner_height = bottom_standoff_height + pcb_thickness + top_standoff_height;
+outer_height = inner_height + wall_thickness ;
+
+screw_outer_diam = 3;
 screw_head_diam = 5.25;
 screw_head_height = 1.5;
 
-standoff_hole_diam = 3.2;
+standoff_hole_diam = 3.5;
 standoff_diam = 6.75;
 screw_insert_height = 4;
-
-pcb_thickness = 0.8;
-
-distance_from_bottom = 3.5;
-bottom_standoff_height = distance_from_bottom;
-top_standoff_height = inner_height - bottom_standoff_height - pcb_thickness - 0.75;
 
 inner_radius = base_diam / 2 - wall_thickness;
 pcb_reduction = 0.25;
 pcb_radius = inner_radius - pcb_reduction;
 
-pcb_button_height = 4.3;
-
 module ScrewHoles(d) {
-    screw_angle = 60;
+    screw_angle = 55;
     screw_dist = pcb_radius - 10;
     screw_diam = d;
 
     translate([0, -2, 0])
-        for (i = [[-55, 0], [0, 1], [55, 0]]) {
+        for (i = [[-screw_angle, 0], [0, 1], [screw_angle, 0]]) {
             rotate([0, 0, i[0]])
                 translate([0, screw_dist - i[1], 0])
                     circle(d = screw_diam);

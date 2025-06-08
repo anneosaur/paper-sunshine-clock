@@ -3,13 +3,13 @@ include <common.scad>
 
 $fn = 128;
 
-button_diam = 4.3;
+button_diam = 4.2;
 button_x = 20.5 / 2;
 button_y = pcb_radius - 6.5;
 button_thickness = 1;
 
 light_pipe_outer_diam = 4;
-light_pipe_inner_diam = 2.2;
+light_pipe_inner_diam = 2.1;
 light_pipe_coord_x = 19.8;
 light_pipe_coord_y = 27.88 + 10.4;
 led_height = 1;
@@ -29,11 +29,11 @@ module Inner() {
   difference() {
     linear_extrude(inner_height)
     circle(inner_radius);
-    
+
     translate([0, 0, inner_height -top_standoff_height ])
     linear_extrude(top_standoff_height)
     translate([0, -main_radius, 0])
-    circle(main_radius + thickness + 1);    
+    circle(main_radius + thickness + 1);
   }
 }
 
@@ -63,10 +63,10 @@ module LightPipe() {
     translate([light_pipe_coord_x, light_pipe_coord_y, inner_height - top_standoff_height + led_height])
       linear_extrude(top_standoff_height - led_height)
         circle(d=light_pipe_outer_diam);
-  
+
     translate([light_pipe_coord_x, light_pipe_coord_y, inner_height - top_standoff_height + led_height])
       linear_extrude(top_standoff_height - led_height)
-        circle(d=light_pipe_inner_diam);  
+        circle(d=light_pipe_inner_diam);
   }
 }
 
@@ -84,7 +84,7 @@ module BackCover() {
     ButtonCutout();
     UsbCutout();
     LightPipeCutout();
-    TempSensorCutout();    
+    TempSensorCutout();
   }
   UpperSandoffs();
   LightPipe();
@@ -92,8 +92,9 @@ module BackCover() {
 
 module CableCutout() {
   length = 12;
-  translate([-length / 2, 9, 5])
-    cube([length, 5, 2]);
+  height = 2;
+  translate([-length / 2, 5, inner_height - top_standoff_height])
+    cube([length, 10, height]);
 }
 
 module ButtonCutout() {
@@ -126,9 +127,9 @@ module UsbCutout() {
 }
 
 module TempSensorCutout() {
-  translate([adjacent(49, 45), opposite(49, 45), 5.5])
+  translate([adjacent(49, 45), opposite(49, 45), inner_height - top_standoff_height + pcb_thickness])
   rotate([-49, 90, 0])
-  linear_extrude(10)
+  linear_extrude(5)
   rounded_square([2, 5], corner_r=0.5, center=true);
 }
 

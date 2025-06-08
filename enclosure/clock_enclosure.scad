@@ -9,7 +9,7 @@ $fn = 128;
 
 
 // Enclosure
-enclosure_display = "F"; // [F:Full, T:Top Only, W:Without top]
+enclosure_display = "W"; // [F:Full, T:Top Only, W:Without top]
 
 module Base() {
   difference() {
@@ -50,8 +50,8 @@ module CableCutOut() {
   coutout_height = 5;
   coutout_width = 12;
 
-  translate([-coutout_width / 2,  2, bottom])
-    cube([coutout_width, thickness, coutout_height]);
+  translate([-coutout_width / 2, -thickness, bottom])
+    cube([coutout_width, thickness*2, coutout_height]);
 }
 
 module FrontCutout() {
@@ -81,7 +81,7 @@ module ResistorCutout() {
     rotate([0, 0, 90 - angle/2])
     bend(size = [206, 106, resistor_thickness], angle = angle)
     linear_extrude(2)
-    import("clock_face.svg"); 
+    import("clock_face.svg");
 }
 
 module ScrewInserts(diam, height, z) {
@@ -127,7 +127,7 @@ module Enclosure() {
         ScrewInserts(screw_head_diam, screw_head_height, total_height - 1);
       }
 
-      translate([0, -main_radius, 0])      
+      translate([0, -main_radius, 0])
       union() {
         Paper();
         FrontCutout();
@@ -136,7 +136,7 @@ module Enclosure() {
       ResistorCutout();
       BottomScrewHoles();
     }
-    
+
   BaseStandoffs();
 }
 
@@ -148,7 +148,7 @@ module EnclosureWithoutTop() {
     translate([-cube_w/2, -base_diam / 2, total_height - margin])
       cube([cube_w, base_diam, margin]);
   }
-  TopRetainingClip(3);  
+  TopRetainingClip(3);
 }
 
 module EnclosureTop() {
@@ -157,7 +157,7 @@ module EnclosureTop() {
   cube_z = total_height - margin;
   difference() {
     Enclosure();
-    TopRetainingClip(3.6);
+    TopRetainingClip(3.4);
 
     translate([-cube_w/2, -cube_d/2, 0])
     cube([cube_w, cube_d, cube_z]);  
