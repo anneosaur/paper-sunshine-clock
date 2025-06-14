@@ -5,7 +5,7 @@ include <common.scad>
 
 use <dotSCAD/bend.scad>
 
-$fn = 300;
+$fn = 128;
 
 
 // Enclosure
@@ -160,7 +160,7 @@ module EnclosureTop() {
   cube_z = total_height - margin;
   difference() {
     Enclosure();
-    TopRetainingClip(3.6);
+    TopRetainingClip(3.4);
 
     translate([-cube_w/2, -cube_d/2, 0])
     cube([cube_w, cube_d, cube_z]);  
