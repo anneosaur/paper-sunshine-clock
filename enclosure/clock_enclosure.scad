@@ -9,15 +9,20 @@ $fn = 128;
 
 
 // Enclosure
-enclosure_display = "F"; // [F:Full, T:Top Only, W:Without top]
+enclosure_display = "W"; // [F:Full, T:Top Only, W:Without top]
 
 module Base() {
   difference() {
     linear_extrude(bottom)
       circle(d = base_diam);
       
-    translate([-26.5,11.5, 1])
-    cube([39, 28, 3]);      
+    translate([3.05, 24.3, 1])
+    linear_extrude(5)
+    circle(d=12);
+
+    translate([-14.65, 24.3, 1])
+    linear_extrude(5)
+    circle(d=12);      
   }
 }
 
@@ -25,18 +30,18 @@ module BaseStandoffs() {
   difference() {
     translate([0, 0, bottom])
       linear_extrude(bottom_standoff_height)
-        ScrewHoles(standoff_diam, middle_offset = -8);
+        ScrewHoles(standoff_diam);
 
     BottomScrewHoles();
   }
 }
 
 module BottomScrewHoles() {
-  linear_extrude(25)
-    ScrewHoles(screw_outer_diam, middle_offset=100);
+  linear_extrude(10)
+    ScrewHoles(screw_outer_diam);
 
   linear_extrude(screw_head_height)
-    ScrewHoles(screw_head_diam, middle_offset=100);
+    ScrewHoles(screw_head_diam);
 }
 
 module Body() {
@@ -84,7 +89,7 @@ module ResistorCutout() {
     rotate([0, 0, 90 - angle/2])
     bend(size = [206, 106, resistor_thickness], angle = angle)
     linear_extrude(2)
-    import("clock_face.svg"); 
+    import("clock_face.svg");
 }
 
 module ScrewInserts(diam, height, z) {
@@ -139,7 +144,7 @@ module Enclosure() {
       ResistorCutout();
       BottomScrewHoles();
     }
-    
+
   BaseStandoffs();
 }
 
@@ -151,7 +156,7 @@ module EnclosureWithoutTop() {
     translate([-cube_w/2, -base_diam / 2, total_height - margin])
       cube([cube_w, base_diam, margin]);
   }
-  TopRetainingClip(3);  
+  TopRetainingClip(3);
 }
 
 module EnclosureTop() {

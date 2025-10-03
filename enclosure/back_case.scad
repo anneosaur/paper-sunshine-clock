@@ -1,7 +1,7 @@
 use <dotSCAD/rounded_square.scad>
 include <common.scad>
 
-$fn = 300;
+$fn = 128;
 
 button_diam = 4.2;
 button_x = 20.5 / 2;
@@ -10,12 +10,12 @@ button_thickness = 1;
 
 light_pipe_outer_diam = 4;
 light_pipe_inner_diam = 2.1;
-light_pipe_coord_x = 19.8;
-light_pipe_coord_y = 27.88 + 10.4;
-led_height = 1;
+light_pipe_coord_x = 20;
+light_pipe_coord_y = 27.88 + 10.5;
+led_height = 1.5;
 
 module Pcb() {
-  translate([0, 0, inner_height - top_standoff_height - pcb_thickness])
+  translate([0, 0, bottom_standoff_height])
     linear_extrude(pcb_thickness)
       difference() {
         circle(pcb_radius);
@@ -54,7 +54,7 @@ module UpperSandoffs() {
 
   translate([0, 0, inner_height - top_standoff_height])
     linear_extrude(screw_insert_height)
-      ScrewHoles(standoff_hole_diam, 100); // don't need screw insert hole in middle standoff
+      ScrewHoles(standoff_hole_diam);
   }
 }
 
@@ -93,7 +93,7 @@ module BackCover() {
 module CableCutout() {
   length = 12;
   height = 2;
-  translate([-length / 2, 5, inner_height - top_standoff_height])
+  translate([-length / 2, 5, bottom_standoff_height + pcb_thickness])
     cube([length, 10, height]);
 }
 
@@ -118,19 +118,21 @@ module ButtonStandoff() {
 }
 
 module UsbCutout() {
-  usb_w = 3.78;
-  usb_h = 9.44;
-  translate([0, 52, -usb_w / 2 + inner_height - top_standoff_height + usb_w])
+  usb_h = 3.78;
+  usb_w = 9.44;
+  translate([0, 52, usb_h/2 + bottom_standoff_height + pcb_thickness])
     rotate([90, 0, 0])
       linear_extrude(5)
-        rounded_square([usb_h, usb_w], corner_r = 1.5, center = true);
+        rounded_square([usb_w, usb_h], corner_r = 1.5, center = true);
 }
 
 module TempSensorCutout() {
-  translate([adjacent(49, 45), opposite(49, 45), inner_height - top_standoff_height + pcb_thickness])
+  width = 5;
+  height = 2;
+  translate([adjacent(49, 45), opposite(49, 45), height/2 + bottom_standoff_height + pcb_thickness])
   rotate([-49, 90, 0])
   linear_extrude(5)
-  rounded_square([2, 5], corner_r=0.5, center=true);
+  rounded_square([height, width], corner_r=0.5, center=true);
 }
 
 

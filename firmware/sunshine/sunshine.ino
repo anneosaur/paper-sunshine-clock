@@ -64,8 +64,13 @@ float lastTemp;
 int sparkleRecent[SPARKLE_RECENT_COUNT] = {};
 
 void setup() {
+  TCCR0A = _BV(COM0A1) | _BV(COM0B1) | _BV(WGM00);
+  TCCR0B = _BV(CS00) | _BV(CS02);
+  
+  TCCR1A = _BV(COM1A1) | _BV(COM1B1) | _BV(WGM10);
+  TCCR1B = _BV(CS10) | _BV(CS12);
 
-  wdt_enable(WDTO_8S);
+  wdt_enable(WDTO_1S);
   Wire.begin();
 
   pinMode(LED, OUTPUT);
